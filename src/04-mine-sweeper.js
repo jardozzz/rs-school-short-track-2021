@@ -21,8 +21,47 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+// eslint-disable-next-line no-unused-vars
+function minesweeper(matrix) {
+  let count = 0;
+  const b = matrix.map((e) => e.map(() => 0));
+  for (let i = 0; i < matrix.length; i += 1) {
+    for (let j = 0; j < matrix[i].length; j += 1) {
+      if (matrix[i - 1]) {
+        if (matrix[i - 1][j - 1]) {
+          count += 1;
+        }
+        if (matrix[i - 1][j]) {
+          count += 1;
+        }
+        if (matrix[i - 1][j + 1]) {
+          count += 1;
+        }
+      }
+      if (matrix[i + 1]) {
+        if (matrix[i + 1][j - 1]) {
+          count += 1;
+        }
+        if (matrix[i + 1][j]) {
+          count += 1;
+        }
+        if (matrix[i + 1][j + 1]) {
+          count += 1;
+        }
+      }
+      if (matrix[i][j - 1]) {
+        count += 1;
+      }
+      if (matrix[i][j + 1]) {
+        count += 1;
+      }
+
+      b[i][j] = count;
+
+      count = 0;
+    }
+  }
+  return b;
 }
 
 module.exports = minesweeper;
